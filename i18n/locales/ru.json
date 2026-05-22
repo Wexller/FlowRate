@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "FlowRate",
+    "subtitle": "Ручной трекинг воронки",
+    "updated": "Обновлено",
+    "saved": "Сохранено",
+    "refresh": "Обновить",
+    "snapshot": "Текущий срез воронки",
+    "rule": "Правило: Replies <= Applications"
+  },
+  "counters": {
+    "title": "Счётчики",
+    "description": "Меняйте значения вручную, конверсии пересчитаются сразу",
+    "applications": "Отклики отправлены",
+    "replies": "Ответы",
+    "interviews": "Интервью",
+    "offers": "Офферы"
+  },
+  "cards": {
+    "fromApplications": "от applications",
+    "emptyBase": "Пока нет базового объёма"
+  },
+  "pipeline": {
+    "title": "Воронка",
+    "progress": "Прогресс по этапам"
+  },
+  "aggregates": {
+    "title": "Агрегаты",
+    "daily": "Дни",
+    "weekly": "Недели",
+    "monthly": "Месяцы",
+    "empty": "Нет агрегированных данных за период"
+  }
+}

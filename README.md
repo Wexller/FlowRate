@@ -1,76 +1,76 @@
 # FlowRate
 
-FlowRate is a documentation-first Nuxt application for manually tracking funnel counters and instantly calculating conversion rates.
+FlowRate is a documentation-first Nuxt 4 application for manual funnel tracking and instant conversion calculation.
 
-The project is intentionally narrow in scope: it is not a CRM, analytics warehouse, or recruiting platform. It is a focused dashboard for fast manual updates, immediate recalculation, and lightweight local persistence.
+## Why It Exists
 
-## Status
+The MVP solves one focused problem: quickly update funnel counters and immediately see conversion rates without CRM overhead or external infrastructure.
 
-Current status: planning and specification phase.
+## Current Status
 
-The repository currently contains the product specification, design specification, and implementation rules that will guide the build. The application scaffold and runtime code are expected to be added next.
+Implemented MVP includes:
+- Nuxt 4 + TypeScript app shell;
+- file-based JSON storage with atomic writes and process-local write lock;
+- typed Nitro API for current state, counter mutation, and aggregates;
+- single-screen dashboard with conversion cards, counters editor, pipeline progress, and aggregates list;
+- RU/EN localization via i18n;
+- offline-safe UI setup without runtime font downloads;
+- domain/API tests for core rules.
 
-## Goals
+## Core Product Model
 
-- Track four required counters:
-  - `applications`
-  - `replies`
-  - `interviews`
-  - `offers`
-- Compute three required conversion rates:
-  - `replyRate`
-  - `interviewRate`
-  - `offerRate`
-- Recalculate conversions immediately after every counter change
-- Persist current state locally as JSON
-- Provide lightweight historical aggregates by day, week, and month
-- Support both Russian and English UI copy through i18n
+Required counters:
+- `applications`
+- `replies`
+- `interviews`
+- `offers`
 
-## Non-Goals For MVP
-
-- No PostgreSQL
-- No Google Sheets integration
-- No CRM workflow management
-- No vacancy database as the product core
-- No multi-user collaboration or auth requirements
-
-## Planned Stack
-
-- `Nuxt 4`
-- `TypeScript`
-- `Nuxt i18n`
-- `Nuxt UI` as the primary component layer
-- `PrimeVue` selectively for number inputs and charts if it materially improves UX
-- `Zod` for schema validation
-- JSON file storage through Nuxt Nitro server endpoints
-
-## Product Summary
-
-The application is based on a counters-first model. Users manually edit funnel counters, and the dashboard immediately reflects the new conversion percentages and ratios.
-
-Required formulas:
-
+Required conversions:
 - `replyRate = replies / applications`
 - `interviewRate = interviews / applications`
 - `offerRate = offers / applications`
 
-Counter integrity rules:
-
-- all values must be integers;
-- all values must be non-negative;
+Invariants:
+- all values are integers;
+- all values are non-negative;
 - `applications >= replies >= interviews >= offers`.
 
-## Planned UX Direction
+When `applications = 0`, all conversion rates return `0`.
 
-The UI direction is a calm, premium analytics dashboard with an ocean-blue palette, large conversion cards, a comfortable counter editor, a pipeline visualization, and a history section for aggregate trends.
+## Architecture
 
-The design should feel focused and readable rather than generic or enterprise-heavy.
+High-level structure:
+
+```text
+.
+├── app/
+│   ├── components/
+│   ├── composables/
+│   ├── pages/
+│   └── assets/
+├── server/
+│   ├── api/
+│   ├── domain/
+│   └── utils/
+├── shared/
+│   ├── constants/
+│   ├── schemas/
+│   └── utils/
+├── i18n/
+├── test/
+├── data/
+└── docs/
+```
 
 ## Data Storage
 
-The MVP uses local JSON files as its source of truth.
+Default data directory:
+- `data/jobflow/`
 
-Expected structure:
+Runtime override:
+- `JOBFLOW_DATA_DIR`
+
+Files:
 
 ```text
 data/jobflow/
@@ -81,13 +81,10 @@ data/jobflow/
     monthly/
 ```
 
-Runtime override:
+`current.json` stores the latest counters and conversions.
+Aggregates store period snapshots derived from state updates.
 
-- `JOBFLOW_DATA_DIR`
-
-## Planned API
-
-Required endpoints:
+## API Overview
 
 - `GET /api/dashboard/current`
 - `PUT /api/dashboard/current`
@@ -95,62 +92,44 @@ Required endpoints:
 - `POST /api/dashboard/counters/:counterKey/decrement`
 - `GET /api/dashboard/aggregates?period=daily|weekly|monthly&from=YYYY-MM-DD&to=YYYY-MM-DD`
 
-## Repository Structure
+## Setup
 
-Current documented structure:
-
-```text
-.
-├── AGENTS.md
-├── README.md
-└── docs/
-    ├── README.md
-    ├── codex-implementation-spec.md
-    ├── conversion-dashboard-design-spec.md
-    └── conversion-dashboard-mvp-spec.md
+```bash
+npm install
 ```
 
-This structure will expand when the Nuxt application scaffold is added.
+The app does not require external font providers to run locally.
+
+## Development
+
+```bash
+npm run dev
+```
+
+## Testing
+
+```bash
+npm test
+```
+
+## Production Build
+
+```bash
+npm run build
+npm run preview
+```
 
 ## Documentation Map
 
-- [AGENTS.md](/Users/workspace/Projects/self/FlowRate/AGENTS.md): agent and engineering working rules
-- [docs/README.md](/Users/workspace/Projects/self/FlowRate/docs/README.md): documentation index
-- [docs/conversion-dashboard-mvp-spec.md](/Users/workspace/Projects/self/FlowRate/docs/conversion-dashboard-mvp-spec.md): product and technical MVP scope
-- [docs/conversion-dashboard-design-spec.md](/Users/workspace/Projects/self/FlowRate/docs/conversion-dashboard-design-spec.md): UI and UX design specification
-- [docs/codex-implementation-spec.md](/Users/workspace/Projects/self/FlowRate/docs/codex-implementation-spec.md): implementation execution brief for building the project
+- [AGENTS.md](/Users/workspace/Projects/self/FlowRate/AGENTS.md)
+- [docs/README.md](/Users/workspace/Projects/self/FlowRate/docs/README.md)
+- [docs/conversion-dashboard-mvp-spec.md](/Users/workspace/Projects/self/FlowRate/docs/conversion-dashboard-mvp-spec.md)
+- [docs/conversion-dashboard-design-spec.md](/Users/workspace/Projects/self/FlowRate/docs/conversion-dashboard-design-spec.md)
+- [docs/codex-implementation-spec.md](/Users/workspace/Projects/self/FlowRate/docs/codex-implementation-spec.md)
 
 ## Development Expectations
 
-- Keep the architecture simple and local-first
-- Prefer typed contracts and explicit validation
-- Keep all user-facing text in i18n dictionaries
-- Treat documentation updates as part of the implementation work
-- Use tests for domain and API behavior as soon as the runtime code exists
-
-## Getting Started
-
-The application scaffold is not created yet. The next implementation phase should:
-
-1. Initialize the Nuxt project structure.
-2. Add TypeScript, i18n, schema validation, and UI dependencies.
-3. Implement the dashboard domain model and JSON persistence.
-4. Build the single-screen dashboard UI.
-5. Add tests and verification scripts.
-6. Update this README with real setup and run commands.
-
-## Documentation Policy
-
-This project is expected to remain fully documented.
-
-At minimum, updates should keep these artifacts accurate:
-
-- `README.md`
-- `docs/README.md`
-- product spec
-- design spec
-- implementation spec
-
-## License
-
-No license has been defined yet.
+- keep architecture explicit and local-first;
+- preserve typed contracts and schema validation;
+- keep UI strings in i18n files;
+- update docs together with behavior changes.

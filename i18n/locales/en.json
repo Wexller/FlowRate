@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "FlowRate",
+    "subtitle": "Manual funnel tracking",
+    "updated": "Updated",
+    "saved": "Saved",
+    "refresh": "Refresh",
+    "snapshot": "Today's funnel snapshot",
+    "rule": "Rule: Replies <= Applications"
+  },
+  "counters": {
+    "title": "Counters",
+    "description": "Update values manually, conversions recalculate instantly",
+    "applications": "Applications",
+    "replies": "Replies",
+    "interviews": "Interviews",
+    "offers": "Offers"
+  },
+  "cards": {
+    "fromApplications": "from applications",
+    "emptyBase": "No base volume yet"
+  },
+  "pipeline": {
+    "title": "Pipeline",
+    "progress": "Progress by stage"
+  },
+  "aggregates": {
+    "title": "Aggregates",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "empty": "No aggregate data in selected period"
+  }
+}

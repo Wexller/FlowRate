@@ -1,6 +1,6 @@
 # Documentation Index
 
-This directory contains the source-of-truth documents for `FlowRate`.
+This directory contains the source-of-truth documents for `FlowRate` and should stay synchronized with implementation.
 
 ## Reading Order
 
@@ -12,33 +12,25 @@ This directory contains the source-of-truth documents for `FlowRate`.
 
 ### [conversion-dashboard-mvp-spec.md](/Users/workspace/Projects/self/FlowRate/docs/conversion-dashboard-mvp-spec.md)
 
-Defines:
-- product behavior;
-- required counters and conversions;
-- storage strategy;
-- required API endpoints;
-- implementation boundaries;
-- test expectations.
+Defines product behavior, counter invariants, API and storage boundaries.
 
 ### [conversion-dashboard-design-spec.md](/Users/workspace/Projects/self/FlowRate/docs/conversion-dashboard-design-spec.md)
 
-Defines:
-- visual direction;
-- layout and information architecture;
-- component strategy;
-- color and typography system;
-- responsive behavior;
-- UX states and motion.
+Defines visual direction, layout structure, UX states, and responsive behavior.
 
 ### [codex-implementation-spec.md](/Users/workspace/Projects/self/FlowRate/docs/codex-implementation-spec.md)
 
-Defines:
-- execution strategy for building the app;
-- delivery milestones;
-- architectural constraints;
-- directory expectations;
-- testing and documentation duties.
+Defines implementation sequence, architecture constraints, and delivery expectations.
+
+## Implementation Snapshot
+
+Current repository implementation includes:
+- Nuxt 4 scaffold and typed app/server modules;
+- JSON storage with atomic write and write mutex;
+- dashboard Nitro endpoints;
+- RU/EN i18n UI dashboard;
+- domain and API-oriented tests with Vitest.
 
 ## Maintenance Rule
 
-Whenever the implementation changes materially, the related document in this directory should be updated in the same workstream.
+When implementation changes setup, architecture, API shape, storage, UI behavior, or testing workflow, update the relevant docs in the same task.

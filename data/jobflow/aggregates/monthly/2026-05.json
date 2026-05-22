@@ -1,0 +1,16 @@
+{
+  "period": "monthly",
+  "key": "2026-05",
+  "updatedAt": "2026-05-22T08:26:32.120Z",
+  "counters": {
+    "applications": 1,
+    "replies": 0,
+    "interviews": 0,
+    "offers": 0
+  },
+  "conversions": {
+    "replyRate": 0,
+    "interviewRate": 0,
+    "offerRate": 0
+  }
+}

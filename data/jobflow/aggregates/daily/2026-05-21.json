@@ -1,0 +1,16 @@
+{
+  "period": "daily",
+  "key": "2026-05-21",
+  "updatedAt": "2026-05-21T15:26:12.829Z",
+  "counters": {
+    "applications": 4,
+    "replies": 1,
+    "interviews": 0,
+    "offers": 0
+  },
+  "conversions": {
+    "replyRate": 0.25,
+    "interviewRate": 0,
+    "offerRate": 0
+  }
+}
