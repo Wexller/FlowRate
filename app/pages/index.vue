@@ -5,18 +5,9 @@ import { toPercentage } from '~~/shared/utils/number'
 const { t, locale, locales, setLocale } = useI18n()
 const { state, pending, refresh, increment, decrement } = useDashboard()
 const actionError = ref('')
+const snapshotVariant = ref<'rectangle' | 'square'>('rectangle')
 
 await refresh()
-
-const conversionCards = computed(() => {
-  if (!state.value) return []
-
-  return [
-    { key: 'replies', rate: state.value.conversions.replyRate, tone: 'tone-replies' },
-    { key: 'interviews', rate: state.value.conversions.interviewRate, tone: 'tone-interviews' },
-    { key: 'offers', rate: state.value.conversions.offerRate, tone: 'tone-offers' }
-  ] as const
-})
 
 function pipelineValue(key: 'applications' | 'replies' | 'interviews' | 'offers') {
   if (!state.value) return 0
@@ -58,18 +49,25 @@ async function handleAdjust(counterKey: (typeof COUNTER_KEYS)[number], direction
       </header>
 
       <section class="hero panel">
-        <h1 class="hero-title">{{ t('app.snapshot') }}</h1>
-        <p class="hero-meta">{{ t('app.rule') }}</p>
-        <p v-if="state" class="hero-meta">{{ t('app.updated') }}: {{ new Date(state.updatedAt).toLocaleString() }}</p>
+        <div class="hero-head">
+          <div>
+            <h1 class="hero-title">{{ t('app.snapshot') }}</h1>
+            <p class="hero-meta">{{ t('app.rule') }}</p>
+            <p v-if="state" class="hero-meta">{{ t('app.updated') }}: {{ new Date(state.updatedAt).toLocaleString() }}</p>
+          </div>
+          <div class="hero-switch" role="group" :aria-label="t('snapshot.variantAria')">
+            <UButton size="sm" :variant="snapshotVariant === 'rectangle' ? 'solid' : 'outline'" @click="snapshotVariant = 'rectangle'">
+              {{ t('snapshot.rectangle') }}
+            </UButton>
+            <UButton size="sm" :variant="snapshotVariant === 'square' ? 'solid' : 'outline'" @click="snapshotVariant = 'square'">
+              {{ t('snapshot.square') }}
+            </UButton>
+          </div>
+        </div>
       </section>
 
-      <section class="section-grid conversion-grid">
-        <article v-for="card in conversionCards" :key="card.key" class="conversion-card panel" :class="card.tone">
-          <p class="metric-label">{{ t(`counters.${card.key}`) }}</p>
-          <p class="metric-value">{{ toPercentage(card.rate) }}%</p>
-          <p class="metric-ratio">{{ state?.counters[card.key] ?? 0 }} / {{ state?.counters.applications ?? 0 }}</p>
-          <p class="metric-helper">{{ state?.counters.applications ? t('cards.fromApplications') : t('cards.emptyBase') }}</p>
-        </article>
+      <section class="section-grid">
+        <DashboardSnapshotCard :state="state" :variant="snapshotVariant" />
       </section>
 
       <section class="lower-grid">

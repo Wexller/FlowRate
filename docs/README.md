@@ -22,6 +22,10 @@ Defines visual direction, layout structure, UX states, and responsive behavior.
 
 Defines implementation sequence, architecture constraints, and delivery expectations.
 
+### [snapshot-card-codex-brief.md](/Users/workspace/Projects/self/FlowRate/docs/snapshot-card-codex-brief.md)
+
+Defines the implementation brief for the compact dashboard snapshot card with `rectangle` and `square` variants.
+
 ## Implementation Snapshot
 
 Current repository implementation includes:

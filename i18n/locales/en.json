@@ -20,6 +20,13 @@
     "fromApplications": "from applications",
     "emptyBase": "No base volume yet"
   },
+  "snapshot": {
+    "subtitle": "Manual funnel snapshot",
+    "loading": "Loading...",
+    "rectangle": "Rectangle",
+    "square": "Square",
+    "variantAria": "Snapshot layout switch"
+  },
   "pipeline": {
     "title": "Pipeline",
     "progress": "Progress by stage"

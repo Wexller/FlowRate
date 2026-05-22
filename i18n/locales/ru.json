@@ -20,6 +20,13 @@
     "fromApplications": "от applications",
     "emptyBase": "Пока нет базового объёма"
   },
+  "snapshot": {
+    "subtitle": "Ручной снэпшот воронки",
+    "loading": "Загрузка...",
+    "rectangle": "Прямоугольник",
+    "square": "Квадрат",
+    "variantAria": "Переключение формата snapshot"
+  },
   "pipeline": {
     "title": "Воронка",
     "progress": "Прогресс по этапам"
