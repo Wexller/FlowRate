@@ -12,7 +12,7 @@ Implemented MVP includes:
 - Nuxt 4 + TypeScript app shell;
 - file-based JSON storage with atomic writes and process-local write lock;
 - typed Nitro API for current state, counter mutation, and aggregates;
-- single-screen dashboard with conversion cards, counters editor, pipeline progress, and aggregates list;
+- single-screen dashboard with a dual snapshot mockup showcase, counters editor, pipeline progress, and aggregates list;
 - RU/EN localization via i18n;
 - offline-safe UI setup without runtime font downloads;
 - domain/API tests for core rules.
