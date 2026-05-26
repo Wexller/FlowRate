@@ -48,6 +48,9 @@ High-level structure:
 │   ├── composables/
 │   ├── pages/
 │   └── assets/
+├── content/
+│   ├── publication-templates/
+│   └── publications/
 ├── server/
 │   ├── api/
 │   ├── domain/
@@ -83,6 +86,37 @@ data/jobflow/
 
 `current.json` stores the latest counters and conversions.
 Aggregates store period snapshots derived from state updates.
+
+## Markdown Publication Export
+
+FlowRate can generate ready-to-publish markdown posts from the latest dashboard snapshot.
+
+Templates:
+- `content/publication-templates/stats-post.ru.md`
+- `content/publication-templates/stats-post.en.md`
+
+Generated files:
+- `content/publications/stats-post.ru.md`
+- `content/publications/stats-post.en.md`
+
+The generator reads the current validated state from `data/jobflow/current.json` through the existing typed domain/storage path. It does not use aggregate history files.
+
+Run the export:
+
+```bash
+npm run generate:stats-post
+```
+
+Current v1 output is a compact publication format with:
+- short intro;
+- updated timestamp;
+- counter list;
+- conversion list.
+
+Recommended future variants:
+- compact social post;
+- bullet digest;
+- narrative weekly summary.
 
 ## API Overview
 

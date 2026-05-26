@@ -6,6 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "generate:stats-post": "node --import tsx scripts/generate-stats-post.ts",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest run"
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.7",
+    "tsx": "^4.22.3",
     "typescript": "^6.0.3",
     "vitest": "^4.1.7"
   },
