@@ -27,12 +27,7 @@
     "conversionSubtitle": "Процент и соотношение от applications",
     "rectangle": "Прямоугольник",
     "square": "Квадрат",
-    "variantAria": "Переключение формата snapshot"
-  },
-  "mockup": {
-    "sectionAria": "Показ макета FlowRate",
-    "squareCaption": "Квадратный вариант (1080×1080)",
-    "rectangleCaption": "Прямоугольный вариант (1600×900)",
+    "variantAria": "Переключение формата snapshot",
     "justNow": "только что",
     "minutesAgo": "{count} мин назад",
     "hoursAgo": "{count} ч назад",

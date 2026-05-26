@@ -27,12 +27,7 @@
     "conversionSubtitle": "Percent and ratio from applications",
     "rectangle": "Rectangle",
     "square": "Square",
-    "variantAria": "Snapshot layout switch"
-  },
-  "mockup": {
-    "sectionAria": "FlowRate mockup showcase",
-    "squareCaption": "Square variant (1080×1080)",
-    "rectangleCaption": "Rectangle variant (1600×900)",
+    "variantAria": "Snapshot layout switch",
     "justNow": "just now",
     "minutesAgo": "{count} min ago",
     "hoursAgo": "{count} hr ago",

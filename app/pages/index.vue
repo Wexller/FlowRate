@@ -5,6 +5,7 @@ import { toPercentage } from '~~/shared/utils/number'
 const { t, locale, locales, setLocale } = useI18n()
 const { state, pending, refresh, increment, decrement } = useDashboard()
 const actionError = ref('')
+const snapshotVariant = ref<'rectangle' | 'square'>('rectangle')
 
 await refresh()
 
@@ -54,11 +55,19 @@ async function handleAdjust(counterKey: (typeof COUNTER_KEYS)[number], direction
             <p class="hero-meta">{{ t('app.rule') }}</p>
             <p v-if="state" class="hero-meta">{{ t('app.updated') }}: {{ new Date(state.updatedAt).toLocaleString() }}</p>
           </div>
+          <div class="hero-switch" role="group" :aria-label="t('snapshot.variantAria')">
+            <UButton size="sm" :variant="snapshotVariant === 'rectangle' ? 'solid' : 'outline'" @click="snapshotVariant = 'rectangle'">
+              {{ t('snapshot.rectangle') }}
+            </UButton>
+            <UButton size="sm" :variant="snapshotVariant === 'square' ? 'solid' : 'outline'" @click="snapshotVariant = 'square'">
+              {{ t('snapshot.square') }}
+            </UButton>
+          </div>
         </div>
       </section>
 
       <section class="section-grid">
-        <DashboardMockupReplica :state="state" />
+        <DashboardSnapshotCard :state="state" :variant="snapshotVariant" />
       </section>
 
       <section class="lower-grid">

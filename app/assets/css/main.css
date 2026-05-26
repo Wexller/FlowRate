@@ -141,6 +141,25 @@ body {
   gap: 16px;
 }
 
+.snapshot__brand-block {
+  display: grid;
+  gap: 8px;
+}
+
+.snapshot__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.snapshot__logo {
+  width: 44px;
+  height: 28px;
+  stroke: #2f9be8;
+  stroke-width: 3.1;
+  stroke-linecap: round;
+}
+
 .snapshot__brand {
   margin: 0;
   font-size: clamp(2.6rem, 2rem + 1.55vw, 3.7rem);
@@ -171,8 +190,26 @@ body {
   box-shadow: 0 8px 18px rgba(15, 78, 116, 0.04);
 }
 
-.snapshot__updated::before {
-  content: '';
+.snapshot__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: #63788e;
+  font-size: 0.94rem;
+}
+
+.snapshot__meta-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.snapshot__meta-bullet {
+  color: #8295a8;
+}
+
+.snapshot__meta-dot {
   width: 9px;
   height: 9px;
   border-radius: 999px;
@@ -262,21 +299,40 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 14px;
+}
+
+.snapshot__counter-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.snapshot__counter-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #edf5ff, #dfeeff);
+}
+
+.snapshot__counter-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: #216fe0;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .snapshot__counter-copy {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.snapshot__counter-step {
-  margin: 0;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(25, 105, 154, 0.55);
+  gap: 8px;
 }
 
 .snapshot__counter-item--applications {
@@ -293,6 +349,16 @@ body {
 
 .snapshot__counter-item--offers {
   background: linear-gradient(180deg, rgba(247, 253, 252, 0.98), rgba(237, 249, 246, 0.96));
+}
+
+.snapshot__counter-item--replies .snapshot__counter-icon,
+.snapshot__counter-item--offers .snapshot__counter-icon {
+  background: linear-gradient(180deg, #e6f8f6, #daf1ef);
+}
+
+.snapshot__counter-item--replies .snapshot__counter-icon svg,
+.snapshot__counter-item--offers .snapshot__counter-icon svg {
+  stroke: #1a9aa6;
 }
 
 .snapshot__counter-label {
@@ -703,6 +769,10 @@ body {
   .lower-grid { grid-template-columns: 1fr; }
   .snapshot--rectangle { aspect-ratio: auto; min-height: 0; }
   .snapshot__body--rectangle { grid-template-columns: 1fr; }
+  .snapshot__updated,
+  .snapshot__meta-row {
+    font-size: 0.88rem;
+  }
   .snapshot__stage-row {
     grid-template-columns: repeat(4, auto);
     row-gap: 14px;
@@ -725,6 +795,18 @@ body {
   .snapshot__header {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .snapshot__brand-row {
+    gap: 12px;
+  }
+  .snapshot__logo {
+    width: 40px;
+    height: 26px;
+  }
+  .snapshot__counter-icon {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
   }
   .snapshot__counter-item--stack,
   .snapshot__metric--row {
